@@ -1,0 +1,19 @@
+{
+  "name": "org",
+  "version": "1.0.0",
+  "description": "static organizer script for local files",
+  "main": " ",
+  "scripts": {
+  },
+  "keywords": [
+    "organizing",
+    "js",
+    "local",
+    "writing"
+  ],
+  "author": "symunona",
+  "license": "ISC",
+  "dependencies": {
+    "yaml-front-matter": "^4.1.1"
+  }
+}
