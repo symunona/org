@@ -10,8 +10,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import { CContainer } from "@coreui/vue";
+import { defineComponent, ref } from "vue"
+import { CContainer } from "@coreui/vue"
 
 export default defineComponent({
   name: "App",
@@ -19,10 +19,10 @@ export default defineComponent({
     CContainer,
   },
   setup() {
-    const data = ref(null);
-    return { data };
+    const data = ref(null)
+    return { data }
   },
-});
+})
 </script>
 
 <style lang="scss">

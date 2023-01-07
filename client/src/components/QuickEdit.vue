@@ -19,20 +19,20 @@
 
     <CTabContent class="panel">
       <NoteEditor v-bind:path="currentQuickEditing">
-        <p>This is sample content for my first todo</p>
+        <!-- <p>This is sample content for my first todo</p>
         <p>You may see this as a nice test for multiline text</p>
         <p>Or just lay back and imagine it's ready.</p>
-        <p>Come on, go cooking.</p>
+        <p>Come on, go cooking.</p> -->
       </NoteEditor>
     </CTabContent>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import NoteEditor from "./NoteEditor.vue";
-import { CNav, CNavItem, CNavLink, CTabContent } from "@coreui/vue";
-import { get } from "../data";
+import { defineComponent } from "vue"
+import NoteEditor from "./NoteEditor.vue"
+import { CNav, CNavItem, CNavLink, CTabContent } from "@coreui/vue"
+import { get } from "../data"
 
 export default defineComponent({
   name: "QuickEdit",
@@ -47,17 +47,17 @@ export default defineComponent({
   data: function () {
     return {
       currentQuickEditing: "index.md",
-    };
+    }
   },
   async setup() {
-    const data = await get();
+    const data = await get()
     return {
       index: data,
 
       quickEdit: data.rootOrg.quickEdit,
-    };
+    }
   },
-});
+})
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

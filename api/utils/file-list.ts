@@ -1,8 +1,13 @@
 
-import { readdirSync, statSync } from "fs";
+import { existsSync, readdirSync, statSync} from "fs";
 import { join } from "path";
 
 import iFile from "../interface/iFile"
+
+import dotenv from 'dotenv'
+dotenv.config()
+
+export const ROOT = process.env.ROOT;
 
 export function getFilesRecursive(currentPath: string): Array<iFile> {
     let files: Array<iFile> = []
@@ -29,9 +34,9 @@ export function getFilesRecursive(currentPath: string): Array<iFile> {
     return files
 }
 
-export function getFilesRecursiveRelative(rootPath: string): Array<iFile> {
-    const files = getFilesRecursive(rootPath)
-    files.forEach(file => file.path = file.path.substring(rootPath.length))
+export function getFilesRecursiveRelative(): Array<iFile> {
+    const files = getFilesRecursive(ROOT)
+    files.forEach(file => file.path = file.path.substring(ROOT.length + 1))
     return files
 }
 
@@ -42,4 +47,8 @@ export function getFileWithStatsFromPath(path: string): iFile {
         lastModified: stats.mtime,
         created: stats.ctime
     }
+}
+
+export function exists(path: string){
+    return existsSync(join(ROOT, path))
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <Suspense>
-      <QuickEdit msg="Todos" />
+      <QuickEdit/>
     </Suspense>
   </div>
 
@@ -18,9 +18,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import QuickEdit from "@/components/QuickEdit.vue"; // @ is an alias to /src
-import { CRow, CCol } from "@coreui/vue";
+import { defineComponent } from "vue"
+import QuickEdit from "@/components/QuickEdit.vue" // @ is an alias to /src
+import { CRow, CCol } from "@coreui/vue"
 
 export default defineComponent({
   name: "HomeView",
@@ -29,5 +29,5 @@ export default defineComponent({
     CRow,
     CCol,
   },
-});
+})
 </script>
