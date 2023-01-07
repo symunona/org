@@ -1,0 +1,18 @@
+{
+    "ts-node": {
+        "swc": true
+    },
+    "compilerOptions": {
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "target": "ES2015",
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "outDir": "dist",
+        "baseUrl": ".",
+    },
+    "include": [
+        "api/**/*"
+    ]
+}
