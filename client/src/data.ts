@@ -19,10 +19,10 @@ const fileNameMap: { [path: string]: iFile } = {}
 
 export async function load(path: string): Promise<iFile> {
   if (fileCache[path]) {
-    console.log('[ORG] found in file cache!', fileCache[path])
+    // console.log('[ORG] found in file cache!', fileCache[path])
     return fileCache[path]
   } else {
-    console.log("[ORG] querying", "/api/load/" + path)
+    // console.log("[ORG] querying", "/api/load/" + path)
     const { data } = await axios.get<iFile>("/api/load/" + path)
     return fileCache[path] = data
   }
@@ -31,7 +31,7 @@ export async function load(path: string): Promise<iFile> {
 export async function get(): Promise<iIndex> {
   if (!indexCache) {
     const cacheWrapper = await axios.get<iIndex>("/api/index")
-    console.log("[ORG] cache:", cacheWrapper.data)
+    // console.log("[ORG] cache:", cacheWrapper.data)
     indexCache = cacheWrapper.data
     indexCache.files.forEach((file: iFile) => fileNameMap[file.path] = file)
     return cacheWrapper.data
@@ -44,8 +44,8 @@ export async function getFileToEdit(path: string): Promise<iFile> {
   if (!path) {
     console.error("[ORG] No path was provided for the editor!")
   }
-  const index = await get()
-  console.log('[ORG] index got:', index)
+  // const index = await get()
+  // console.log('[ORG] index got:', index)
   if (fileNameMap[path]) {
     return await load(path)
   } else {

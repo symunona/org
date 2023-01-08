@@ -14,12 +14,7 @@
     </CNav>
 
     <CTabContent class="panel" v-if="currentQuickEditing">
-      <NoteEditor v-bind:path="currentQuickEditing">
-        <!-- <p>This is sample content for my first todo</p>
-        <p>You may see this as a nice test for multiline text</p>
-        <p>Or just lay back and imagine it's ready.</p>
-        <p>Come on, go cooking.</p> -->
-      </NoteEditor>
+      <NoteEditor v-bind:path="currentQuickEditing"/>
     </CTabContent>
   </div>
 </template>
@@ -44,13 +39,13 @@ export default defineComponent({
   props: {},
   setup() {
     const quickEdit: Ref<Array<iFile|string>> = ref([])
-    const currentQuickEditing: Ref<string|iFile> = ref('')
+    const currentQuickEditing: Ref<string> = ref('')
 
     get().then((index) => {
       console.log(index)
       quickEdit.value = index.rootOrg.quickEdit
       if (quickEdit.value.length) {
-        currentQuickEditing.value = quickEdit.value[0]
+        currentQuickEditing.value = quickEdit.value[0] as string
       }
     })
 

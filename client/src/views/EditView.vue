@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    Editor
     <div>
       <NoteEditor :path="path"></NoteEditor>
     </div>
@@ -49,11 +48,8 @@ export default defineComponent({
     }
   },
   created() {
-    console.log('created', this.$route.path)
-
     let path = this.$route.params.path
     if (Array.isArray(path)) {
-      console.log('array', )
       this.path = path.join('/')
     }
   }

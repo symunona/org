@@ -11,3 +11,39 @@ h2 {
     font-weight: 600;
     padding-left: 10px;
 }
+
+.toastui-editor-defaultUI{
+    border: 0;
+    background-color: white;
+}
+
+/* .toastui-editor-toolbar > *{
+    visibility: hidden;
+}
+
+.toastui-editor-toolbar:hover > *{
+    visibility: visible;
+} */
+
+
+.md-editor .toastui-editor-toolbar{ display: none; }
+.md-editor.show-toolbar .toastui-editor-toolbar{ display: block; }
+
+
+.toastui-editor-toolbar, .toastui-editor-defaultUI .toastui-editor-md-tab-container, .toastui-editor-defaultUI-toolbar{
+    background-color: white;
+}
+
+.toastui-editor-md-tab-container .toastui-editor-tabs{
+    margin-left: 0;
+}
+
+.toastui-editor-md-tab-container .tab-item{
+    border: 0;
+    margin-top: 0;
+    height: 45px; line-height: 45px;
+}
+
+.toastui-editor .ProseMirror{
+    height: 100%
+}
