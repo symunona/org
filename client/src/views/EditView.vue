@@ -1,13 +1,14 @@
 <template>
   <div class="home">
-    <Suspense>
-      <QuickEdit />
-    </Suspense>
+    Editor
+    <div>
+      <NoteEditor :path="path"></NoteEditor>
+    </div>
   </div>
 
   <CRow class="spaced-above">
     <CCol lg>
-      <h2>recently viewed</h2>
+      <h2>latest with this tag</h2>
       <div class="panel">
         <ul>
           <li v-for="file in files" v-bind:key="file.path">
@@ -17,7 +18,7 @@
       </div>
     </CCol>
     <CCol lg>
-      <h2>active tags</h2>
+      <h2>related tags</h2>
       <div class="panel">2 of 2</div>
     </CCol>
   </CRow>
@@ -25,25 +26,35 @@
 
 <script lang="ts">
 import { defineComponent, ref, Ref } from "vue"
-import QuickEdit from "@/components/QuickEdit.vue" // @ is an alias to /src
 import { CRow, CCol } from "@coreui/vue"
-import { recentlyEdited, get } from '../data'
-import iFile from "../../../api/interface/iFile"
+// import { load } from '../data'
+// import iFile from "../../../api/interface/iFile"
 import { RouterLink } from "vue-router"
+import iFile from "../../../api/interface/iFile"
+import NoteEditor from "../components/NoteEditor.vue"
 
 export default defineComponent({
-  name: "HomeView",
+  name: "EditView",
   components: {
-    QuickEdit,
     CRow,
     CCol,
-    RouterLink
-},
-  setup() {
+    RouterLink,
+    NoteEditor
+  },
+  data() {
     const files: Ref<Array<iFile>> = ref([])
-    get().then(()=>files.value = recentlyEdited(10))
     return {
+      path: '',
       files
+    }
+  },
+  created() {
+    console.log('created', this.$route.path)
+
+    let path = this.$route.params.path
+    if (Array.isArray(path)) {
+      console.log('array', )
+      this.path = path.join('/')
     }
   }
 })

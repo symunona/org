@@ -3,7 +3,7 @@ import Fastify, { FastifyInstance, FastifyReply, FastifyRequest, RouteShorthandO
 const { NotFound } = require('http-errors')
 
 import dotenv from 'dotenv'
-import buildIndex, { load } from './utils/index'
+import buildIndex, { load } from './utils/indexer'
 import { exists, ROOT } from './utils/file-list'
 
 dotenv.config()
@@ -44,9 +44,9 @@ server.decorate('notFound', (request: FastifyRequest, reply: FastifyReply) => {
 })
 
 
-server.get('/api/load/:filePath', async (req: FastifyRequest, res) => {
-  const fileName = req.params.filePath
-  console.log('[ORG] getting file', fileName)
+server.get('/api/load/*', async (req: FastifyRequest, res) => {
+  const fileName = (req.params as {'*': string})['*']
+  console.log('[ORG] !!! getting file', fileName)
   if (!exists(fileName)){
     throw new NotFound(fileName + ' not found.')
   }

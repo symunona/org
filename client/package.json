@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@coreui/vue": "^4.5.0",
+    "@toast-ui/vue-editor": "^3.2.2",
     "axios": "^1.2.2",
     "register-service-worker": "^1.7.2",
     "vue": "^3.2.13",
@@ -46,7 +47,10 @@
       "ecmaVersion": 2020
     },
     "rules": {
-      "semi": ["error", "never"]
+      "semi": [
+        "error",
+        "never"
+      ]
     }
   },
   "browserslist": [

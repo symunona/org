@@ -5,23 +5,19 @@
     <div class="user"><router-link to="/about">me</router-link></div>
   </nav>
   <CContainer mm>
-    <router-view />
+    <router-view :key="$route.path"/>
   </CContainer>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue"
+import { defineComponent } from "vue"
 import { CContainer } from "@coreui/vue"
 
 export default defineComponent({
   name: "App",
   components: {
     CContainer,
-  },
-  setup() {
-    const data = ref(null)
-    return { data }
-  },
+  }
 })
 </script>
 

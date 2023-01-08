@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "ORG API",
-            "program": "${workspaceFolder}/src/api.ts",
+            "program": "${workspaceFolder}/api/api.ts",
             "preLaunchTask": "tsc: build - tsconfig.json",
             "outFiles": ["${workspaceFolder}/dist/**/*.js"]
         },
@@ -19,6 +19,14 @@
             "request": "launch",
             "command": "ts-node -- ${fileBasenameNoExtension}",
             "cwd": "${fileDirname}"
+          },
+
+          {
+            "type": "node-terminal",
+            "name": "API TS 2",
+            "request": "launch",
+            "command": "ts-node -- api/api.ts",
+            "cwd": "${workspaceFolder}"
           },
     ]
 }

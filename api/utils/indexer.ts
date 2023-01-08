@@ -62,6 +62,7 @@ function buildTagMap(files: Array<iFile>) {
 
         if (file.path.endsWith('.md')) {
             const frontMatterData = await readFrontMatter(file.path, ROOT)
+            file.meta = frontMatterData
             // Tags accessible this folder
             tags = tags.concat(frontMatterData.tags || [])
             // In a folder, we assume similar files, so we collect all

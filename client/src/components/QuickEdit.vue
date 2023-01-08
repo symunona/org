@@ -3,21 +3,17 @@
     <CNav variant="tabs" role="tablist">
       <CNavItem v-if="!quickEdit.length" active></CNavItem>
       <CNavItem v-for="file in quickEdit" v-bind:key="file">
-        <CNavLink
-          href="javascript:void(0);"
-          :active="currentQuickEditing === file"
-          @click="
-            () => {
-              currentQuickEditing = file;
-            }
-          "
-        >
+        <CNavLink href="javascript:void(0);" :active="currentQuickEditing === file" @click="
+          () => {
+            currentQuickEditing = file;
+          }
+        ">
           {{ file }}
         </CNavLink>
       </CNavItem>
     </CNav>
 
-    <CTabContent class="panel">
+    <CTabContent class="panel" v-if="currentQuickEditing">
       <NoteEditor v-bind:path="currentQuickEditing">
         <!-- <p>This is sample content for my first todo</p>
         <p>You may see this as a nice test for multiline text</p>
@@ -29,10 +25,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue"
+import { defineComponent, ref } from "vue"
+import type { Ref } from 'vue'
 import NoteEditor from "./NoteEditor.vue"
 import { CNav, CNavItem, CNavLink, CTabContent } from "@coreui/vue"
 import { get } from "../data"
+import iFile from "../../../api/interface/iFile"
 
 export default defineComponent({
   name: "QuickEdit",
@@ -44,17 +42,21 @@ export default defineComponent({
     CTabContent,
   },
   props: {},
-  data: function () {
-    return {
-      currentQuickEditing: "index.md",
-    }
-  },
-  async setup() {
-    const data = await get()
-    return {
-      index: data,
+  setup() {
+    const quickEdit: Ref<Array<iFile|string>> = ref([])
+    const currentQuickEditing: Ref<string|iFile> = ref('')
 
-      quickEdit: data.rootOrg.quickEdit,
+    get().then((index) => {
+      console.log(index)
+      quickEdit.value = index.rootOrg.quickEdit
+      if (quickEdit.value.length) {
+        currentQuickEditing.value = quickEdit.value[0]
+      }
+    })
+
+    return {
+      quickEdit,
+      currentQuickEditing
     }
   },
 })
